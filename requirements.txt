@@ -6,7 +6,7 @@ cement==2.8.2
 colorama==0.3.7
 defusedxml==0.5.0
 dj-database-url==0.4.0
-Django==1.11.4
+Django==1.11
 django-storages==1.6.3
 docker-py==1.7.2
 dockerpty==0.4.1
@@ -31,4 +31,4 @@ social-auth-core==1.4.0
 tabulate==0.7.5
 termcolor==1.1.0
 websocket-client==0.44.0
-whitenoise==3.0
+whitenoise==3.3.0
