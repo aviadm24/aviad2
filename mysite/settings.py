@@ -118,4 +118,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+# very important - https://stackoverflow.com/questions/42462880/how-to-serve-static-files-to-aws-when-deploying-django-app-python-manage-py-co
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#print('static root:',STATIC_ROOT)
 STATIC_URL = '/static/'
