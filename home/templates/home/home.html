@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>Aviad.py</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -19,8 +19,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/freelancer.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template
+    <link href="{% static 'css/freelancer.min.css' %}" rel="stylesheet"> -->
+    <link href="{% static 'css/freelancer.css' %}" rel="stylesheet">
 
   </head>
 
@@ -29,7 +30,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Aviad.py</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -53,11 +54,11 @@
     <!-- Header -->
     <header class="masthead">
       <div class="container">
-        <img class="img-fluid" src="img/profile.png" alt="">
+        <img class="img-fluid" src="{% static 'img/profile.png' %}" alt="">
         <div class="intro-text">
-          <span class="name">Start Bootstrap</span>
+          <span class="name">Aviad.py</span>
           <hr class="star-light">
-          <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
+          <span class="skills">Web Developer</span>
         </div>
       </div>
     </header>
@@ -75,7 +76,7 @@
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/cabin.png" alt="">
+              <img class="img-fluid" src="{% static 'img/portfolio/cabin.png' %}" alt="">
             </a>
           </div>
           <div class="col-sm-4 portfolio-item">
@@ -85,7 +86,7 @@
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/cake.png" alt="">
+              <img class="img-fluid" src="{% static 'img/portfolio/cake.png' %}" alt="">
             </a>
           </div>
           <div class="col-sm-4 portfolio-item">
@@ -95,7 +96,7 @@
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/circus.png" alt="">
+              <img class="img-fluid" src="{% static 'img/portfolio/circus.png' %}" alt="">
             </a>
           </div>
           <div class="col-sm-4 portfolio-item">
@@ -105,7 +106,7 @@
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/game.png" alt="">
+              <img class="img-fluid" src="{% static 'img/portfolio/game.png' %}" alt="">
             </a>
           </div>
           <div class="col-sm-4 portfolio-item">
@@ -115,7 +116,7 @@
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/safe.png" alt="">
+              <img class="img-fluid" src="{% static 'img/portfolio/safe.png' %}" alt="">
             </a>
           </div>
           <div class="col-sm-4 portfolio-item">
@@ -125,7 +126,7 @@
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/submarine.png" alt="">
+              <img class="img-fluid" src="{% static 'img/portfolio/submarine.png' %}" alt="">
             </a>
           </div>
         </div>
@@ -139,10 +140,14 @@
         <hr class="star-light">
         <div class="row">
           <div class="col-lg-4 ml-auto">
-            <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
+            <p>Freelancer is a free bootstrap theme created by Start Bootstrap.
+              The download includes the complete source files including HTML, CSS,
+              and JavaScript as well as optional LESS stylesheets for easy customization.</p>
           </div>
           <div class="col-lg-4 mr-auto">
-            <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+            <p>Whether you're a student looking to showcase your work, a professional
+              looking to attract clients, or a graphic artist looking to share your projects,
+              this template is the perfect starting point!</p>
           </div>
           <div class="col-lg-8 mx-auto text-center">
             <a href="#" class="btn btn-lg btn-outline">
@@ -210,8 +215,8 @@
           <div class="row">
             <div class="footer-col col-md-4">
               <h3>Location</h3>
-              <p>3481 Melrose Place
-                <br>Beverly Hills, CA 90210</p>
+              <p>שאול המלך 98\7
+                <br>בית שאן</p>
             </div>
             <div class="footer-col col-md-4">
               <h3>Around the Web</h3>
@@ -244,9 +249,9 @@
               </ul>
             </div>
             <div class="footer-col col-md-4">
-              <h3>About Freelancer</h3>
-              <p>Freelance is a free to use, open source Bootstrap theme created by
-                <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+              <h3></h3>
+              <p>
+                <a href="#"></a></p>
             </div>
           </div>
         </div>
@@ -255,7 +260,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              Copyright &copy; Your Website 2017
+              Copyright &copy; Aviad.py 2017
             </div>
           </div>
         </div>

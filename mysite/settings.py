@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'smzc%+y)*3=ssm4zd*d-x2xv60@=m3koidjsj5m%k+bo2i(_c2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['fierce-hamlet-48503.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['fierce-hamlet-48503.herokuapp.com', '127.0.0.1', 'pythoninhebrew.com']
 
 
 # Application definition
