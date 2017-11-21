@@ -1,0 +1,108 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html dir = 'rtl'>
+    <head>
+         <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+        <title>
+            {% block title %}
+                CRM demo
+            {% endblock title %}
+        </title>
+        {% block head_extra %}{% endblock head_extra %}
+
+    </head>
+
+    <body>
+    <!-- Just an image -->
+    <nav class="navbar navbar-light bg-faded" style="font-weight: bold; background-color: #569AAB;">
+
+            {% if user.is_authenticated %}
+            <p class="navbar-brand navbar-left">מחובר - שלום {{user}} !</p>
+            {% else %}
+            <p class="navbar-brand navbar-left"><a href=""> כניסה לחשבונך </a>&#124;<a href=""> הרשם </a></p>
+            {% endif %}
+            <!--<p> Hi!  {{user}} </p>-->
+              <a class="navbar-brand navbar-right" href="">
+                <img src="" width="30" height="30" alt="לוגו">
+              </a>
+
+    </nav>
+
+    <div class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" id="brand" href="#">אפשרות ללוגו</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+          <!--<li class="active"></li>-->
+          {% with url_name=request.resolver_match.url_name %}
+          <li class="{% if url_name == 'zorkesher' %} active {% endif %}"><a href="{% url 'home' %}">צור קשר</a></li>
+          <li class="{% if url_name == 'michzur' %} active {% endif %}"><a href="{% url 'home' %}">מחזור משכנתא</a></li>
+          <li class="{% if url_name == 'hadrachot' %} active {% endif %}"><a href="{% url 'home' %}">הדרכות / הרצאות  משכנתא</a></li>
+          <li class="{% if url_name == 'knisa' %} active {% endif %}"><a href="{% url 'home' %}">כניסה ליועצי משכנתאות</a></li>
+          <li class="{% if url_name == 'home_page' %} active {% endif %}"><a href="{% url 'home' %}"><strong>כניסה</strong></a></li>
+
+          <li class="{% if url_name == 'login' %} active {% endif %}"><a href="{% url 'home' %}"><strong>כניסת משתמש</strong></a></li>
+          {% if user.is_authenticated %}
+          <li class="{% if url_name == 'logout' %} active {% endif %}"><a href="{% url 'home' %}"><strong>צא</strong></a></li>
+          {% endif %}
+          {% endwith %}
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+
+
+        {% block right_nav %}{% endblock right_nav %}
+        {%block knisa%}{%endblock knisa%}
+        {%block michzur%}{%endblock michzur%}
+        {%block zorkesher%}{%endblock zorkesher%}
+        {% block hadrachot %}{% endblock hadrachot %}
+        {% block sheelon %}{% endblock sheelon %}
+    {% block login %}{% endblock login %}
+
+
+        {%block detail %}{% endblock detail %}
+        {% block footer %}{% endblock footer %}
+<div class="push"></div>
+</div>
+    <footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-offset-5 col-xs-2 text-center">
+                <p>כל הזכויות שמורות<p>
+            </div>
+            <div class="col-xs-5"></div>
+        </div>
+    </div>
+    </footer>
+    <!-- include javascript, jQuery FIRST -->
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <script>
+
+        $(document).ready(function()
+            {
+                $('#formGroupExampleInput').attr("data-format", "+1 (ddd) ddd-dddd");
+                $('#formGroupExampleInput2').attr("data-format", "+1 (ddd) ddd-dddd");
+
+            }
+        );
+
+    </script>
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <!--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
+
+    </body>
+</html>

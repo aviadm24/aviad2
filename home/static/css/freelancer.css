@@ -30,7 +30,8 @@ h5,
 h6 {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
-  text-transform: lowercase; }
+  //text-transform: lowercase;
+  }
 
 hr.star-light,
 hr.star-primary {
@@ -107,7 +108,7 @@ section.success {
 #mainNav {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
-  text-transform: lowercase;
+  //text-transform: lowercase;
   border: none;
   background: #2C3E50; }
   #mainNav a:focus {

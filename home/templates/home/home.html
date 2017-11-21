@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html dir="rtl">
 
   <head>
 
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Aviad.py</title>
+    <title>A.py Software</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -30,7 +30,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Aviad.py</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">A.py Software</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -54,7 +54,7 @@
     <!-- Header -->
     <header class="masthead">
       <div class="container">
-        <img class="img-fluid" src="{% static 'img/profile.png' %}" alt="">
+        <img class="img-fluid" src="" alt="">
         <div class="intro-text">
           <span class="name">Aviad.py</span>
           <hr class="star-light">
@@ -70,65 +70,66 @@
         <hr class="star-primary">
         <div class="row">
           <div class="col-sm-4 portfolio-item">
-            <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
+            <a class="portfolio-link" href="{% url 'crm_demo'%}" >
               <div class="caption">
                 <div class="caption-content">
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="{% static 'img/portfolio/cabin.png' %}" alt="">
+              <img class="img-fluid" src="{% static 'img/portfolio/crm.png' %}" alt="">
             </a>
           </div>
           <div class="col-sm-4 portfolio-item">
-            <a class="portfolio-link" href="#portfolioModal2" data-toggle="modal">
+            <a class="portfolio-link" href="{% url 'pdf_booklet_demo'%}">
               <div class="caption">
                 <div class="caption-content">
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="{% static 'img/portfolio/cake.png' %}" alt="">
+              <img class="img-fluid" src="{% static 'img/portfolio/pdf.png' %}" alt="">
             </a>
           </div>
           <div class="col-sm-4 portfolio-item">
-            <a class="portfolio-link" href="#portfolioModal3" data-toggle="modal">
+            <a class="portfolio-link" href="https://aviad-lms.herokuapp.com/" >
               <div class="caption">
                 <div class="caption-content">
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="{% static 'img/portfolio/circus.png' %}" alt="">
+              <img class="img-fluid" src="{% static 'img/portfolio/lms.png' %}" alt="" href="https://aviad-lms.herokuapp.com/">
             </a>
           </div>
-          <div class="col-sm-4 portfolio-item">
-            <a class="portfolio-link" href="#portfolioModal4" data-toggle="modal">
-              <div class="caption">
-                <div class="caption-content">
-                  <i class="fa fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="{% static 'img/portfolio/game.png' %}" alt="">
-            </a>
-          </div>
-          <div class="col-sm-4 portfolio-item">
-            <a class="portfolio-link" href="#portfolioModal5" data-toggle="modal">
-              <div class="caption">
-                <div class="caption-content">
-                  <i class="fa fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="{% static 'img/portfolio/safe.png' %}" alt="">
-            </a>
-          </div>
-          <div class="col-sm-4 portfolio-item">
-            <a class="portfolio-link" href="#portfolioModal6" data-toggle="modal">
-              <div class="caption">
-                <div class="caption-content">
-                  <i class="fa fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="{% static 'img/portfolio/submarine.png' %}" alt="">
-            </a>
-          </div>
+          
+          <!--<div class="col-sm-4 portfolio-item">-->
+            <!--<a class="portfolio-link" href="#portfolioModal4" data-toggle="modal">-->
+              <!--<div class="caption">-->
+                <!--<div class="caption-content">-->
+                  <!--<i class="fa fa-search-plus fa-3x"></i>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<img class="img-fluid" src="{% static 'img/portfolio/game.png' %}" alt="">-->
+            <!--</a>-->
+          <!--</div>-->
+          <!--<div class="col-sm-4 portfolio-item">-->
+            <!--<a class="portfolio-link" href="#portfolioModal5" data-toggle="modal">-->
+              <!--<div class="caption">-->
+                <!--<div class="caption-content">-->
+                  <!--<i class="fa fa-search-plus fa-3x"></i>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<img class="img-fluid" src="{% static 'img/portfolio/safe.png' %}" alt="">-->
+            <!--</a>-->
+          <!--</div>-->
+          <!--<div class="col-sm-4 portfolio-item">-->
+            <!--<a class="portfolio-link" href="#portfolioModal6" data-toggle="modal">-->
+              <!--<div class="caption">-->
+                <!--<div class="caption-content">-->
+                  <!--<i class="fa fa-search-plus fa-3x"></i>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<img class="img-fluid" src="{% static 'img/portfolio/submarine.png' %}" alt="">-->
+            <!--</a>-->
+          <!--</div>-->
         </div>
       </div>
     </section>
@@ -140,10 +141,17 @@
         <hr class="star-light">
         <div class="row">
           <div class="col-lg-4 ml-auto">
-            <p></p>
+            <p>מי שמעוניין ללמוד Python בעברית מוזמן לראות את הסרטונים שלי
+              <a style="color:red" href="https://www.youtube.com/watch?v=kSRLtSAX3_Q&list=PLeCGzyIreTGa3hwzh5l2u8YkFU00RW8Hd">ב youtube</a></p>
           </div>
           <div class="col-lg-4 mr-auto">
-            <p></p>
+            <p>
+קצת עלי: לפני כמה שנים עלה לי רעיון ליצור תוכנת חיפוש בטקסטים שאני משתמש בהם הרבה.
+התחלתי לברר אפשרויות ומחירים אצל מתכנתים ואז שאלתי את עצמי למה שלא אבנה את התוכנות האלה לבד?
+פניתי לאחי והוא המליץ ללמוד Python.
+מכיוון שאני דובר אנגלית פשוט התחלתי ללמוד דרך האינטרנט.
+היה קשה אבל בסוף תוך פחות משנתיים כבר יכולתי לבנות כל תוכנה שהיא!
+לאט לאט למדתי על התכונות הטובות של Python והיום אני משוכנע שהיא השפה הכי טובה למתחילים ולמתקדמים בכל הרמות.</p>
           </div>
           <div class="col-lg-8 mx-auto text-center">
             <a href="#" class="btn btn-lg btn-outline">
@@ -210,9 +218,8 @@
         <div class="container">
           <div class="row">
             <div class="footer-col col-md-4">
-              <h3>Location</h3>
-              <p>שאול המלך 98\7
-                <br>בית שאן</p>
+              <h3>ניתן לפנות אלי ב:</h3>
+              <p><a style="color:red" href="https://www.xplace.com/u/aviadmoshe">Xplace</a></p>
             </div>
             <!--<div class="footer-col col-md-4">-->
               <!--<h3>Around the Web</h3>-->

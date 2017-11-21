@@ -20,4 +20,7 @@ from home import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^crm_demo$', views.crm_demo, name='crm_demo'),
+    url(r'^pdf_booklet_demo$', views.pdf_booklet_demo, name='pdf_booklet_demo'),
+    #url(r'^lms_demo$', views.lms_demo, name='lms_demo'),
 ]
