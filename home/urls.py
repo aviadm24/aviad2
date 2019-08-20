@@ -23,4 +23,5 @@ urlpatterns = [
     # url(r'^crm_demo$', views.crm_demo, name='crm_demo'),
     url(r'^pdf_booklet_demo$', views.pdf_booklet_demo, name='pdf_booklet_demo'),
     url(r'^send_mail$', views.send_mail, name='send_mail'),
+    url(r'^lesson1$', views.lesson1, name='lesson1'),
 ]

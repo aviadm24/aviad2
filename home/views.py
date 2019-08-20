@@ -20,3 +20,7 @@ def send_mail(request):
 
 def pdf_booklet_demo(request):
     return render(request, 'home/pdf_booklet_demo.html')
+
+
+def lesson1(request):
+    return render(request, 'home/lesson1.html')
