@@ -24,3 +24,7 @@ def pdf_booklet_demo(request):
 
 def lesson1(request):
     return render(request, 'home/lesson1.html')
+
+
+def lesson2(request):
+    return render(request, 'home/lesson2.html')
