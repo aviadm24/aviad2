@@ -32,3 +32,11 @@ def lesson2(request):
 
 def lesson3(request):
     return render(request, 'home/lesson3.html')
+
+
+def lesson4(request):
+    return render(request, 'home/lesson4.html')
+
+
+def lesson5(request):
+    return render(request, 'home/lesson5.html')

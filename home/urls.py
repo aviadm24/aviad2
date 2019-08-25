@@ -26,4 +26,6 @@ urlpatterns = [
     url(r'^lesson1$', views.lesson1, name='lesson1'),
     url(r'^lesson2$', views.lesson2, name='lesson2'),
     url(r'^lesson3$', views.lesson3, name='lesson3'),
+url(r'^lesson4$', views.lesson4, name='lesson4'),
+url(r'^lesson5$', views.lesson5, name='lesson5'),
 ]
