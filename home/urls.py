@@ -20,12 +20,13 @@ from home import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    # url(r'^crm_demo$', views.crm_demo, name='crm_demo'),
+    url(r'^google_contacts_app$', views.google_contacts_app, name='google_contacts_app'),
+    url(r'^privacy_policy$', views.privacy_policy, name='privacy_policy'),
     url(r'^pdf_booklet_demo$', views.pdf_booklet_demo, name='pdf_booklet_demo'),
     url(r'^send_mail$', views.send_mail, name='send_mail'),
     url(r'^lesson1$', views.lesson1, name='lesson1'),
     url(r'^lesson2$', views.lesson2, name='lesson2'),
     url(r'^lesson3$', views.lesson3, name='lesson3'),
-url(r'^lesson4$', views.lesson4, name='lesson4'),
-url(r'^lesson5$', views.lesson5, name='lesson5'),
+    url(r'^lesson4$', views.lesson4, name='lesson4'),
+    url(r'^lesson5$', views.lesson5, name='lesson5'),
 ]

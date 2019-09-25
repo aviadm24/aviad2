@@ -6,6 +6,15 @@ from django.views.decorators.csrf import csrf_exempt
 def home(request):
     return render(request, 'home/home.html')
 
+
+def google_contacts_app(request):
+    return render(request, 'home/google_contacts_app.html')
+
+
+def privacy_policy(request):
+    return render(request, 'home/privacy_policy.html')
+
+
 @csrf_exempt
 def send_mail(request):
     if request.method == 'POST':
