@@ -24,7 +24,7 @@ SECRET_KEY = 'smzc%+y)*3=ssm4zd*d-x2xv60@=m3koidjsj5m%k+bo2i(_c2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aviad2.herokuapp.com', '127.0.0.1', 'pythoninhebrew.com','www.pythoninhebrew.com']
+ALLOWED_HOSTS = ['aviad2.herokuapp.com', '127.0.0.1', 'localhost', 'pythoninhebrew.com', 'www.pythoninhebrew.com']
 
 
 # Application definition
@@ -150,3 +150,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'aviadm32@gmail.com'
 EMAIL_HOST_PASSWORD = 'aviadpython'
+
+
+FN_AUTH_REDIRECT_URI = "http://localhost:8000/google/auth"
+FN_BASE_URI = "http://localhost:8000"
+FN_CLIENT_ID = "37866652038-qh3b1ni3e1b5ad8n3beds83s7e1jt1fj.apps.googleusercontent.com"
+FN_CLIENT_SECRET = "kds92jr8z4Esb92VImChdTih"

@@ -32,3 +32,6 @@ tabulate==0.7.5
 termcolor==1.1.0
 websocket-client==0.44.0
 whitenoise==3.3.0
+authlib==0.12.1
+google-api-python-client==1.7.11
+google-auth==1.6.3

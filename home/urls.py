@@ -20,7 +20,10 @@ from home import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^google/login$', views.login, name='login'),
+    url(r'^google/auth$', views.google_auth_redirect, name='google_auth_redirect'),
     url(r'^google_contacts_app$', views.google_contacts_app, name='google_contacts_app'),
+    url(r'^add_contact$', views.add_contact, name='add_contact'),
     url(r'^privacy_policy$', views.privacy_policy, name='privacy_policy'),
     url(r'^pdf_booklet_demo$', views.pdf_booklet_demo, name='pdf_booklet_demo'),
     url(r'^send_mail$', views.send_mail, name='send_mail'),
