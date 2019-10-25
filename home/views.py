@@ -185,6 +185,21 @@ def add_contact(request):
         return render(request, 'home/list.html', {'success': contact_name})
 
 
+@csrf_exempt
+def action_check(request):
+    import json
+    print(request)
+    if request.method == 'POST':
+        # print(json.loads(request.body))
+
+        action = json.loads(request.body.decode("utf-8"))
+        # action_success = request.POST.get('action_success')
+        err = request.POST.get('err')
+        print('action: {} - success: {}'.format(action['action_id'], action['action_success']))
+    return render(request, 'home/privacy_policy.html')
+
+
+
 def privacy_policy(request):
     return render(request, 'home/privacy_policy.html')
 
