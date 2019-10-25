@@ -196,6 +196,8 @@ def action_check(request):
         # action_success = request.POST.get('action_success')
         err = request.POST.get('err')
         print('action: {} - success: {}'.format(action['action_id'], action['action_success']))
+        email = EmailMessage('action check ', 'action: {} - success: {}'.format(action['action_id'], action['action_success']), to=['aviadm24@gamil.com'])
+        email.send()
     return render(request, 'home/privacy_policy.html')
 
 
@@ -211,7 +213,7 @@ def send_mail(request):
         phone = request.POST.get('phone')
         email = request.POST.get('email')
         message = request.POST.get('message')
-        email = EmailMessage('sent from '+name, message + ' ' + str(phone), to=[email])
+        email = EmailMessage('sent from '+name, message + ' ' + str(phone), to=['aviadm24@gamil.com'])
         email.send()
     return HttpResponse("")
 
