@@ -65,8 +65,8 @@ $('#name').focus(function() {
 // https://dev.to/mandaputtra/click-to-send-on-whatsapp-with-javascript-2anm
 //// https://api.whatsapp.com/send?phone=+{{ *YOURNUMBER* }}&text=%20{{ *YOUR MESSAGE* }}
 
-var yourNumber = "{{}}"
-var yourMessage = "{{ your message in string }}"
+var yourNumber = ""
+var yourMessage = "מצאתי מוצר שיעניין אותך "
 
 // %20 mean space in link
 // If you already had an array then you just join them with '%20'
@@ -75,9 +75,10 @@ var yourMessage = "{{ your message in string }}"
 function getLinkWhastapp(number, message) {
   number = this.yourNumber
   message = this.yourMessage.split(' ').join('%20')
-  url = 'https://api.whatsapp.com/send?phone=' + number + '&text=%20' + message;
+  site_url = window.location.href
+  url = 'https://api.whatsapp.com/send?phone=' + number + '&text=%20' + message + site_url;
   window.open(url, '_blank');
   return console.log('https://api.whatsapp.com/send?phone=' + number + '&text=%20' + message)
 }
 
-getLinkWhastapp()
+//getLinkWhastapp()
