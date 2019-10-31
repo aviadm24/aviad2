@@ -65,20 +65,27 @@ $('#name').focus(function() {
 // https://dev.to/mandaputtra/click-to-send-on-whatsapp-with-javascript-2anm
 //// https://api.whatsapp.com/send?phone=+{{ *YOURNUMBER* }}&text=%20{{ *YOUR MESSAGE* }}
 
-var yourNumber = ""
-var yourMessage = "מצאתי מוצר שיעניין אותך "
 
 // %20 mean space in link
 // If you already had an array then you just join them with '%20'
 // easy right
 
 function getLinkWhastapp(number, message) {
-  number = this.yourNumber
-  message = this.yourMessage.split(' ').join('%20')
+//  var yourNumber = ""
+  var yourMessage = "מצאתי מוצר שיעניין אותך "
+//https://d3m9l0v76dty0.cloudfront.net/system/photos/314508/original/6caf62a44b9eab4f33e4b15befc35535.png?1549367221
+//  number = this.yourNumber
+  number = ''
+  message = yourMessage.split(' ').join('%20')
   site_url = window.location.href
   url = 'https://api.whatsapp.com/send?phone=' + number + '&text=%20' + message + site_url;
-  window.open(url, '_blank');
+//  window.open(url, '_blank');
+//  $("a.whatsapp_share").attr("style", 'display: block; width: 100%; height: 100%; line-height: 20px; font-size: 14px; color: #2f2933; font-weight: bold; margin: 0; background-image: url("https://d3m9l0v76dty0.cloudfront.net/system/photos/314508/original/6caf62a44b9eab4f33e4b15befc35535.png?1549367221") no-repeat right center; padding-right: 25px;')
+  $("a.whatsapp_share").attr("style", 'background-image: url("https://d3m9l0v76dty0.cloudfront.net/system/photos/314508/original/6caf62a44b9eab4f33e4b15befc35535.png?1549367221"); background-repeat: no-repeat; background-position: center right; padding-right: 25px;')
+
+  $("a.whatsapp_share").attr("href", url)
+
   return console.log('https://api.whatsapp.com/send?phone=' + number + '&text=%20' + message)
 }
-
-//getLinkWhastapp()
+//$("a.whatsapp_share").attr("href", "http://www.google.com/")
+getLinkWhastapp()
