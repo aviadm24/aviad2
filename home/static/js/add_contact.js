@@ -69,7 +69,7 @@ $('#name').focus(function() {
 // %20 mean space in link
 // If you already had an array then you just join them with '%20'
 // easy right
-
+//https://jscompress.com/
 function getLinkWhastapp(number, message) {
 //  var yourNumber = ""
   var yourMessage = "מצאתי מוצר שיעניין אותך "
