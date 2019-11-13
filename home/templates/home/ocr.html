@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image">
+    <button type="submit">Upload</button>
+  </form>
+
+  {% if uploaded_file_url %}
+    <p>File uploaded at: <a href="{% static uploaded_file_url %}">{{ uploaded_file_url }}</a></p>
+    <img src="{% static uploaded_file_url %}">
+  {% endif %}
+  {% if text %}
+    <p>File uploaded text: {{ text }}</p>
+  {% endif %}
+
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+
+</body>
+</html>

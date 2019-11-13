@@ -8,6 +8,9 @@ import googleapiclient.discovery
 from django.conf import settings
 from .models import User_tokens
 from django.contrib.sessions.backends.db import SessionStore
+import pytesseract
+from PIL import Image
+from django.core.files.storage import FileSystemStorage
 
 ACCESS_TOKEN_URI = 'https://www.googleapis.com/oauth2/v4/token'
 AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent'
@@ -240,3 +243,28 @@ def lesson4(request):
 
 def lesson5(request):
     return render(request, 'home/lesson5.html')
+
+
+def plain_ocr(filename):
+    text = pytesseract.image_to_string(Image.open(filename), lang='heb')
+    with open('after_clean7.txt', 'w', encoding='utf8') as f:
+        f.write(text)
+    return text
+
+# https://stackoverflow.com/questions/53363547/how-to-deploy-pytesseract-to-heroku
+@csrf_exempt
+def image_upload(request):
+    if request.method == 'POST' and request.FILES['image']:
+        myfile = request.FILES['image']
+        fs = FileSystemStorage()
+        filename = fs.save('home/static/images/'+myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        text = plain_ocr(uploaded_file_url)
+        uploaded_file_url = '/'.join(fs.url(filename).split('/')[2:])
+        # print('ocr text: ', text)
+        return render(request, 'home/ocr.html', {
+            'text': text,
+            'uploaded_file_url': uploaded_file_url
+        })
+    return render(request, 'home/ocr.html')
+
