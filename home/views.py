@@ -259,9 +259,10 @@ def image_upload(request):
         fs = FileSystemStorage()
         filename = fs.save('home/static/images/'+myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
+        print(uploaded_file_url)
         text = plain_ocr(uploaded_file_url)
         uploaded_file_url = '/'.join(fs.url(filename).split('/')[2:])
-        # print('ocr text: ', text)
+        print('uploaded_file_url: ', uploaded_file_url)
         return render(request, 'home/ocr.html', {
             'text': text,
             'uploaded_file_url': uploaded_file_url
