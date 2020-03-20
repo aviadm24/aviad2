@@ -156,3 +156,7 @@ FN_AUTH_REDIRECT_URI = "http://localhost:8000/google/auth"
 FN_BASE_URI = "http://localhost:8000"
 FN_CLIENT_ID = "37866652038-qh3b1ni3e1b5ad8n3beds83s7e1jt1fj.apps.googleusercontent.com"
 FN_CLIENT_SECRET = "kds92jr8z4Esb92VImChdTih"
+
+
+GS_CI = '275608597925-ce7brk5ck7f677orl9m5dupi9n7tl01a.apps.googleusercontent.com'
+GS_CS = 'mONUGYAn54FmPqTRSNPjsZ7S'

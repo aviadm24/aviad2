@@ -251,6 +251,7 @@ def plain_ocr(filename):
         f.write(text)
     return text
 
+
 # https://stackoverflow.com/questions/53363547/how-to-deploy-pytesseract-to-heroku
 @csrf_exempt
 def image_upload(request):
