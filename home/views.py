@@ -189,6 +189,14 @@ def add_contact(request):
 
 
 @csrf_exempt
+def update_sheets(request):
+    if request.method == 'POST':
+        print('post: ', request.POST)
+        return render(request, 'home/list.html')
+
+
+
+@csrf_exempt
 def action_check(request):
     import json
     print(request)
