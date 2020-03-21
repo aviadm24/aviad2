@@ -6,12 +6,29 @@ from authlib.client import OAuth2Session
 import google.oauth2.credentials
 import googleapiclient.discovery
 from django.conf import settings
-from .models import User_tokens
+from .models import User_tokens, Feedback
 from django.contrib.sessions.backends.db import SessionStore
 import pytesseract
 from PIL import Image
 from django.core.files.storage import FileSystemStorage
+import re
+from django.http.response import JsonResponse
 
+
+# from __future__ import print_function
+import pickle
+import os.path
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+
+# If modifying these scopes, delete the file token.pickle.
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+
+# The ID and range of a sample spreadsheet.
+SAMPLE_SPREADSHEET_ID = '18fUM43kYh4Ac6kgNItlSKJbbjKhIoSCMGYqTCWqGUzk'
+SAMPLE_RANGE_NAME = 'Class Data!A2:E'
+###
 ACCESS_TOKEN_URI = 'https://www.googleapis.com/oauth2/v4/token'
 AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent'
 
@@ -187,13 +204,78 @@ def add_contact(request):
         contact.execute()
         return render(request, 'home/list.html', {'success': contact_name})
 
+def check_status(text):
+    if "טופל" in text:
+        return '2'
+    elif "נוצר קשר" in text:
+        return '1'
+    else:
+        return '0'
+
 
 @csrf_exempt
 def update_sheets(request):
     if request.method == 'POST':
-        print('post: ', request.POST)
+        post = request.POST
+        print('post: ', post)
+
+        fb = Feedback()
+        fb.project_id = re.findall(r'\d+', str(post))
+        fb.status = check_status(str(post))
+        fb.save()
         return render(request, 'home/list.html')
 
+
+@csrf_exempt
+def check_update(request):
+    if request.method == 'POST':
+        post = request.POST
+        print('req: ', request)
+        print('post: ', post)
+        # id = re.findall(r'\d+', str(post))
+        # proj = Feedback.objects.get(project_id=str(id))
+        status = "" #proj.status
+
+        return JsonResponse({'success': True, 'status': status})
+
+def main():
+    """Shows basic usage of the Sheets API.
+    Prints values from a sample spreadsheet.
+    """
+    creds = None
+    # The file token.pickle stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+
+    service = build('sheets', 'v4', credentials=creds)
+
+    # Call the Sheets API
+    sheet = service.spreadsheets()
+    result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
+                                range=SAMPLE_RANGE_NAME).execute()
+    values = result.get('values', [])
+
+    if not values:
+        print('No data found.')
+    else:
+        print('Name, Major:')
+        for row in values:
+            # Print columns A and E, which correspond to indices 0 and 4.
+            print('%s, %s' % (row[0], row[4]))
 
 
 @csrf_exempt

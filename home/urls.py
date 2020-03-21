@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^google_contacts_app$', views.google_contacts_app, name='google_contacts_app'),
     url(r'^add_contact$', views.add_contact, name='add_contact'),
 url(r'^update_sheets$', views.update_sheets, name='update_sheets'),
+url(r'^check_update$', views.check_update, name='check_update'),
     url(r'^privacy_policy$', views.privacy_policy, name='privacy_policy'),
 url(r'^image_upload$', views.image_upload, name='image_uplaod'),
     url(r'^pdf_booklet_demo$', views.pdf_booklet_demo, name='pdf_booklet_demo'),
