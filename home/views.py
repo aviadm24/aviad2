@@ -13,7 +13,7 @@ from PIL import Image
 from django.core.files.storage import FileSystemStorage
 import re
 from django.http.response import JsonResponse
-
+import json
 
 # from __future__ import print_function
 import pickle
@@ -216,11 +216,12 @@ def check_status(text):
 @csrf_exempt
 def update_sheets(request):
     if request.method == 'POST':
-        post = request.POST
+        post = request.body.decode("utf-8")
         print('post: ', post)
-
+        id = re.findall(r'\d+', str(post))[0]
+        print("id: ", id)
         fb = Feedback()
-        fb.project_id = re.findall(r'\d+', str(post))
+        fb.project_id = id
         fb.status = check_status(str(post))
         fb.save()
         return render(request, 'home/list.html')
@@ -229,14 +230,13 @@ def update_sheets(request):
 @csrf_exempt
 def check_update(request):
     if request.method == 'POST':
-        post = request.POST
-        print('req: ', request)
-        print('post: ', post)
-        # id = re.findall(r'\d+', str(post))
-        # proj = Feedback.objects.get(project_id=str(id))
-        status = "" #proj.status
+        data = request.body.decode("utf-8")
+        print('req: ', data)
+        id = re.findall(r'\d+', str(data))[0]
+        status = Feedback.objects.get(project_id=str(id))
+        print('status: ', status)
 
-        return JsonResponse({'success': True, 'status': status})
+        return JsonResponse({'success': True, 'status': str(status)})
 
 def main():
     """Shows basic usage of the Sheets API.
