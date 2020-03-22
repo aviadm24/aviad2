@@ -207,9 +207,9 @@ def add_contact(request):
 def check_status(text):
     if "טופל" in text:
         return '2'
-    elif "נוצר קשר" in text:
+    elif "נוצר" in text:
         return '1'
-    elif "בהמתנה" in text:
+    elif "ממתין" in text:
         return '0'
     else:
         return '3'
