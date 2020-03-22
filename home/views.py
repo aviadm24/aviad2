@@ -232,8 +232,8 @@ def check_update(request):
     if request.method == 'POST':
         data = request.body.decode("utf-8")
         print('req: ', data)
-        id = re.findall(r'\d+', str(data))[0]
-        status = Feedback.objects.get(project_id=str(id)).status
+        # id = re.findall(r'\d+', str(data))[0]
+        status = Feedback.objects.get(project_id=str(data)).status
         print('status: ', status)
         return JsonResponse({'success': True, 'status': str(status)})
 
