@@ -233,10 +233,13 @@ def check_update(request):
         data = request.body.decode("utf-8")
         print('req: ', data)
         # id = re.findall(r'\d+', str(data))[0]
-        status = Feedback.objects.get(project_id=str(data)).status
-        print('status: ', status)
-        return JsonResponse({'success': True, 'status': str(status)})
-
+        try:
+            status = Feedback.objects.get(project_id=str(data)).status
+            print('status: ', status)
+            return JsonResponse({'success': True, 'status': str(status)})
+        except:
+            return JsonResponse({'success': False, 'status': '3'})
+        
 def main():
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
