@@ -235,7 +235,6 @@ def check_update(request):
         id = re.findall(r'\d+', str(data))[0]
         status = Feedback.objects.get(project_id=str(id))
         print('status: ', status)
-
         return JsonResponse({'success': True, 'status': str(status)})
 
 def main():
