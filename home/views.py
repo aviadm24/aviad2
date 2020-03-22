@@ -216,13 +216,22 @@ def check_status(text):
 @csrf_exempt
 def update_sheets(request):
     if request.method == 'POST':
-        post = request.body.decode("utf-8")
+        post_uft8 = request.body.decode("utf-8")
+        print('post_uft8: ', post_uft8)
+        post = request.body
         print('post: ', post)
-        id = re.findall(r'\d+', str(post))[0]
+        pars = post_uft8.split('&')
+        body = pars[1]
+        message = pars[2]
+        id = message.split('=')[0]
+        status = message.split('=')[1]
+
+        # id = re.findall(r'\d+', str(post))[0]
         print("id: ", id)
+        print("status: ", status)
         fb = Feedback()
         fb.project_id = id
-        fb.status = check_status(str(post))
+        fb.status = status #  check_status(str(post))
         fb.save()
         return render(request, 'home/list.html')
 
@@ -239,7 +248,7 @@ def check_update(request):
             return JsonResponse({'success': True, 'status': str(status)})
         except:
             return JsonResponse({'success': False, 'status': '3'})
-        
+
 def main():
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
