@@ -14,7 +14,7 @@ from django.core.files.storage import FileSystemStorage
 import re
 from django.http.response import JsonResponse
 import json
-
+import urllib.parse as pr
 # from __future__ import print_function
 import pickle
 import os.path
@@ -209,8 +209,10 @@ def check_status(text):
         return '2'
     elif "נוצר קשר" in text:
         return '1'
-    else:
+    elif "בהמתנה" in text:
         return '0'
+    else:
+        return '3'
 
 
 @csrf_exempt
@@ -222,16 +224,16 @@ def update_sheets(request):
         print('post: ', post)
         pars = post_uft8.split('&')
         body = pars[1]
-        message = pars[2]
-        id = message.split('=')[0]
-        status = message.split('=')[1]
+        message = pr.unquote(pars[2].split('=')[1])
+        id = message.split(' ')[0]
+        status = message.split(' ')[1]
 
         # id = re.findall(r'\d+', str(post))[0]
         print("id: ", id)
         print("status: ", status)
         fb = Feedback()
         fb.project_id = id
-        fb.status = status #  check_status(str(post))
+        fb.status = check_status(str(status))
         fb.save()
         return render(request, 'home/list.html')
 
