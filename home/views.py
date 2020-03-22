@@ -220,21 +220,28 @@ def update_sheets(request):
     if request.method == 'POST':
         post_uft8 = request.body.decode("utf-8")
         print('post_uft8: ', post_uft8)
-        post = request.body
-        print('post: ', post)
-        pars = post_uft8.split('&')
-        body = pars[1]
-        message = pr.unquote(pars[2].split('=')[1])
-        id = message.split(' ')[0]
-        status = message.split(' ')[1]
-
-        # id = re.findall(r'\d+', str(post))[0]
+        try:
+            post = request.body
+            print('post: ', post)
+            pars = post_uft8.split('&')
+            body = pars[1]
+            message = pr.unquote(pars[2].split('=')[1])
+            id = message.split(' ')[0]
+            status = message.split(' ')[1]
+        except:
+            # id = re.findall(r'\d+', str(post))[0]
+            id = post_uft8.split(' ')[0]
+            status = post_uft8.split(' ')[1]
         print("id: ", id)
         print("status: ", status)
-        fb = Feedback()
-        fb.project_id = id
-        fb.status = check_status(str(status))
-        fb.save()
+        Feedback.objects.update_or_create(
+            project_id=id,
+            status=check_status(str(status))
+        )
+        # fb = Feedback()
+        # fb.project_id = id
+        # fb.status = check_status(str(status))
+        # fb.save()
         return render(request, 'home/list.html')
 
 
