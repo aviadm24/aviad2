@@ -213,7 +213,8 @@ def check_status(text):
     else:
         return '3'
 
-def aviad_sheets():
+
+def aviad_sheets(id, status):
     # based on https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html
     # read that file for how to generate the creds and how to use gspread to read and write to the spreadsheet
 
@@ -233,8 +234,15 @@ def aviad_sheets():
     sheet = spreadsheet.sheet1
 
     # Extract and print all of the values
-    rows = sheet.get_all_records()
-    print(rows)
+    # rows = sheet.get_all_records()
+    # print(rows)
+    values_list = sheet.col_values(1)
+    print(values_list)
+    index = None
+    for i in values_list:
+        if i == id:
+            index = values_list.index(i)
+    sheet.update_acell('O' + str(index + 1), status)
 
 
 
@@ -251,10 +259,12 @@ def update_sheets(request):
             message = pr.unquote(pars[2].split('=')[1])
             id = message.split(' ')[0]
             status = message.split(' ')[1]
+            aviad_sheets(id=id, status=status)
         except:
             # id = re.findall(r'\d+', str(post))[0]
             id = post_uft8.split(' ')[0]
             status = post_uft8.split(' ')[1]
+            aviad_sheets(id=id, status=status)
         print("id: ", id)
         print("status: ", status)
         Feedback.objects.update_or_create(
@@ -267,7 +277,7 @@ def update_sheets(request):
         # fb.save()
         return render(request, 'home/list.html')
     else:
-        aviad_sheets()
+        aviad_sheets(id=None, status=None)
         return render(request, 'home/list.html')
 
 
