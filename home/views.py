@@ -268,6 +268,7 @@ def update_sheets(request):
         return render(request, 'home/list.html')
     else:
         aviad_sheets()
+        return render(request, 'home/list.html')
 
 
 @csrf_exempt
