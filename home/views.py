@@ -13,15 +13,14 @@ from PIL import Image
 from django.core.files.storage import FileSystemStorage
 import re
 from django.http.response import JsonResponse
-import json
 import urllib.parse as pr
 # from __future__ import print_function
 import pickle
 import os.path
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
-
+import os
+import json
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
@@ -258,45 +257,29 @@ def check_update(request):
         except:
             return JsonResponse({'success': False, 'status': '3'})
 
-def main():
-    """Shows basic usage of the Sheets API.
-    Prints values from a sample spreadsheet.
-    """
-    creds = None
-    # The file token.pickle stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first
-    # time.
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
-            creds = pickle.load(token)
-    # If there are no (valid) credentials available, let the user log in.
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
-        # Save the credentials for the next run
-        with open('token.pickle', 'wb') as token:
-            pickle.dump(creds, token)
 
-    service = build('sheets', 'v4', credentials=creds)
+def aviad_sheets():
+    # based on https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html
+    # read that file for how to generate the creds and how to use gspread to read and write to the spreadsheet
 
-    # Call the Sheets API
-    sheet = service.spreadsheets()
-    result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
-                                range=SAMPLE_RANGE_NAME).execute()
-    values = result.get('values', [])
+    # use creds to create a client to interact with the Google Drive API
+    scopes = ['https://spreadsheets.google.com/feeds',
+             'https://www.googleapis.com/auth/drive']
 
-    if not values:
-        print('No data found.')
-    else:
-        print('Name, Major:')
-        for row in values:
-            # Print columns A and E, which correspond to indices 0 and 4.
-            print('%s, %s' % (row[0], row[4]))
+    json_creds = os.getenv("GOOGLE_SHEETS_CREDS_JSON")
 
+    creds_dict = json.loads(json_creds)
+    creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scopes)
+    client = gspread.authorize(creds)
+
+    # Find a workbook by url
+    spreadsheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1iKqFETeWoz1qj0qrp1GwZ2djyhIzJ6Gr3VrTY9jLU04/edit#gid=1164342576")
+    sheet = spreadsheet.sheet1
+
+    # Extract and print all of the values
+    rows = sheet.get_all_records()
+    print(rows)
 
 @csrf_exempt
 def action_check(request):

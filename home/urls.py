@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^add_contact$', views.add_contact, name='add_contact'),
 url(r'^update_sheets$', views.update_sheets, name='update_sheets'),
 url(r'^check_update$', views.check_update, name='check_update'),
+url(r'^aviad_sheets$', views.aviad_sheets, name='aviad_sheets'),
     url(r'^privacy_policy$', views.privacy_policy, name='privacy_policy'),
 url(r'^image_upload$', views.image_upload, name='image_uplaod'),
     url(r'^pdf_booklet_demo$', views.pdf_booklet_demo, name='pdf_booklet_demo'),
