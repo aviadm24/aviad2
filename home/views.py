@@ -230,7 +230,8 @@ def aviad_sheets(id, status):
     client = gspread.authorize(creds)
 
     # Find a workbook by url
-    spreadsheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1iKqFETeWoz1qj0qrp1GwZ2djyhIzJ6Gr3VrTY9jLU04/edit#gid=1164342576")
+    korona_url = 'https://docs.google.com/spreadsheets/d/18fUM43kYh4Ac6kgNItlSKJbbjKhIoSCMGYqTCWqGUzk/edit#gid=2084856787'
+    spreadsheet = client.open_by_url(korona_url)
     sheet = spreadsheet.sheet1
 
     # Extract and print all of the values
@@ -257,7 +258,7 @@ def update_sheets(request):
             pars = post_uft8.split('&')
             body = pars[1]
             message = pr.unquote(pars[2].split('=')[1])
-            id = message.split(' ')[0]
+            id = re.findall(r'\d+', str(message))[0] #  message.split(' ')[0]
             status = message.split(' ')[1]
             aviad_sheets(id=id, status=status)
         except:
