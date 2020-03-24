@@ -260,8 +260,11 @@ def update_sheets(request):
             pars = post_uft8.split('&')
             body = pars[1]
             message = pr.unquote(pars[2].split('=')[1])
+            print('pars2: ', message)
             id = re.findall(r'\d+', str(message))[0] #  message.split(' ')[0]
+            print('id: ', id)
             status = message.split(' ')[1]
+            print('status: ', status)
             aviad_sheets(id=id, status=status)
         except:
             # id = re.findall(r'\d+', str(post))[0]
