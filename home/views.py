@@ -234,7 +234,7 @@ def aviad_sheets(id, status):
     spreadsheet = client.open_by_url(korona_url)
     worksheet_list = spreadsheet.worksheets()
     # print(worksheet_list)
-    sheet = spreadsheet.get_worksheet(1)
+    sheet = spreadsheet.worksheet("תגובות לטופס 1")
 
     # Extract and print all of the values
     # rows = sheet.get_all_records()
