@@ -240,7 +240,7 @@ def aviad_sheets(id, status):
     # rows = sheet.get_all_records()
     # print(rows)
     values_list = sheet.col_values(1)
-    # print(values_list)
+    print(values_list)
     index = None
     for i in values_list:
         if i == id:
