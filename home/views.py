@@ -263,9 +263,9 @@ def update_sheets(request):
             print('pars2: ', message)
             id = re.findall(r'\d+', str(message))[0] #  message.split(' ')[0]
             print('id: ', id)
-            status = message.split(' ')[1]
-            if 'נוצר' in status:
-                status = 'נוצר קשר'
+            status = message.replace(id, '').strip()
+            # if 'נוצר' in status:
+            #     status = 'נוצר קשר'
             print('status: ', status)
             aviad_sheets(id=id, status=status)
         except:
