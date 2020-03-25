@@ -264,10 +264,10 @@ def update_sheets(request):
             id = re.findall(r'\d+', str(message))[0] #  message.split(' ')[0]
             print('id: ', id)
             status = message.replace(id, '').strip()
-            # if 'נוצר' in status:
-            #     status = 'נוצר קשר'
             print('status: ', status)
-            aviad_sheets(id=id, status=status)
+            for s in ['טופל', 'ממתין', 'נוצר קשר', 'וידוא משימה']:
+                if status in s:
+                    aviad_sheets(id=id, status=status)
         except:
             # id = re.findall(r'\d+', str(post))[0]
             id = post_uft8.split(' ')[0]
