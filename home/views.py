@@ -245,7 +245,7 @@ def aviad_sheets(id, status):
     for i in values_list:
         if i == id:
             index = values_list.index(i)
-    sheet.update_acell('O' + str(index + 1), status)
+    sheet.update_acell('P' + str(index + 1), status)
 
 
 
