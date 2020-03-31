@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['aviad2.herokuapp.com', '127.0.0.1', 'localhost', 'pythoninhebr
 
 INSTALLED_APPS = [
     'home',
+    'background_task',  # new 29.3.20
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,6 +89,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 ipaddress = socket.gethostbyname(socket.gethostname())
+# sock.getsockname()[1]
 print('ip_address:', ipaddress)
 if not ipaddress.startswith('172'):
     DATABASES = {
@@ -99,6 +101,14 @@ if not ipaddress.startswith('172'):
 else:
     DATABASES = {}
     DATABASES['default'] = dj_database_url.config()
+
+
+CACHES = {
+   'default': {
+      'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+      'LOCATION': '/tmp/cache',
+   }
+}
 
 
 # Password validation

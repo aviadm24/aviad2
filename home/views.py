@@ -17,10 +17,17 @@ import urllib.parse as pr
 # from __future__ import print_function
 import pickle
 import os.path
-import os
+from . import tasks
 import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime as dt
+import os
+from django.core.cache import cache
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
@@ -335,6 +342,23 @@ def send_mail(request):
         email = EmailMessage('sent from '+name, message + ' ' + str(phone), to=['aviadm24@gamil.com'])
         email.send()
     return HttpResponse("")
+
+
+@csrf_exempt
+def check_bb(request):
+    if request.method == 'POST':
+        post_uft8 = request.body.decode("utf-8")
+        # print('post_uft8: ', post_uft8)
+        date = post_uft8.split('#')[1]
+        time = dt.strptime(date, '%b %d %Y %I:%M:%S')
+        sec_past = (dt.now() - time).seconds
+        # print('sec_past: ', sec_past)
+        with open('time.txt', 'w') as f:
+            f.write(date)
+        cache.set('time', time)
+        # print(cache.get('time'))
+    return render(request, 'home/list.html')
+
 
 
 def pdf_booklet_demo(request):
