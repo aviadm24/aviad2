@@ -6,7 +6,7 @@ from authlib.client import OAuth2Session
 import google.oauth2.credentials
 import googleapiclient.discovery
 from django.conf import settings
-from .models import User_tokens, Feedback
+from .models import User_tokens, Feedback, Time
 from django.contrib.sessions.backends.db import SessionStore
 import pytesseract
 from PIL import Image
@@ -351,23 +351,35 @@ def check_bb(request):
         # print('post_uft8: ', post_uft8)
         date = post_uft8.split('#')[1]
         print('date: ', date)
-
+        # db = Time()
+        try:
+            t = Time.objects.get()
+            print(t.id)
+            Time.objects.filter(pk=t.id).update(time=date)
+        except Exception as e:
+            print(e)
+            Time.objects.create(time=date)
         # time = dt.strptime(date, '%b %d %Y %I:%M:%S')
-        print('view dir: ', os.getcwd())
-        print(__file__)
-        print(os.listdir(os.getcwd()))
-        base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        print(os.listdir(base))
-        file = os.path.join(base, 'time.txt')
-        with open(file, 'w') as f:
-            f.write(date)
-        with open(file, 'w') as f:
-            print(f.read(date))
+        # print('view dir: ', os.getcwd())
+        # print(__file__)
+        # print(os.listdir(os.getcwd()))
+        # base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        # print(os.listdir(base))
+        # file = os.path.join(base, 'time.txt')
+        # with open(file, 'w') as f:
+        #     f.write(date)
+        # with open(file, 'w') as f:
+        #     print(f.read(date))
+
         # cache.set('time', time)
-        # print(cache.get('time'))
+        # print(cache.get('time')
     return render(request, 'home/list.html')
 
 
+def get_time(request):
+    t = Time.objects.get()
+    print('time: ', t.time)
+    return JsonResponse({'time': t.time})
 
 def pdf_booklet_demo(request):
     return render(request, 'home/pdf_booklet_demo.html')

@@ -7,7 +7,8 @@ from django.conf import settings
 settings.configure()
 import os
 from django.core.cache import cache
-global sent
+import requests
+import json
 sent = False
 
 
@@ -30,20 +31,29 @@ def sendgrid_mail():
 
 def check_time():
     print("function check")
-    base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    print(os.listdir(base))
-    file = os.path.join(base, 'time.txt')
-    with open(file, 'r') as f:
-        date = f.read()
-    time = datetime.strptime(date, '%b %d %Y %I:%M:%S')
-    print("ping: ", time)
+    # base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # print(os.listdir(base))
+    # file = os.path.join(base, 'time.txt')
+    # with open(file, 'r') as f:
+    #     date = f.read()
+    # time = datetime.strptime(date, '%b %d %Y %I:%M:%S')
+    r = requests.get("http://127.0.0.1:8000/get_time")
+    print(r.status_code)
+    print(r.content)
+    t = json.loads(r.content)
+    print(t)
+    sever_time = datetime.strptime(t['time'], '%b %d %Y %I:%M:%S')
+    global sent
+    print("ping: ", sever_time)
     print("now: ", datetime.now())
-    delta = datetime.now() - time
+    delta = datetime.now() - sever_time
     print('delta is: ', delta.seconds)
     if delta.seconds > 60:
         print('sending mail +++++++++++++++++++++++=')
-        # if sent == False:
-        #     sendgrid_mail()
+        if sent == False:
+            print('2sending mail +++++++++++++++++++++++=')
+            # sendgrid_mail()
+            sent = True
 
 sched = BlockingScheduler()
 

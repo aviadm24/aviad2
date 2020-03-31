@@ -19,3 +19,10 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.project_id
+
+
+class Time(models.Model):
+    time = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.time
