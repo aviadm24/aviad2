@@ -37,7 +37,7 @@ def check_time():
     # with open(file, 'r') as f:
     #     date = f.read()
     # time = datetime.strptime(date, '%b %d %Y %I:%M:%S')
-    r = requests.get("http://127.0.0.1:8000/get_time")
+    r = requests.get("https://aviad2.herokuapp.com/get_time")
     print(r.status_code)
     print(r.content)
     t = json.loads(r.content)
