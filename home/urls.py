@@ -19,7 +19,7 @@ from home import views
 
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
+    url(r'^$', views.carousel, name='home'),
     url(r'^google/login$', views.login, name='login'),
     url(r'^google/auth$', views.google_auth_redirect, name='google_auth_redirect'),
     url(r'^google_contacts_app$', views.google_contacts_app, name='google_contacts_app'),

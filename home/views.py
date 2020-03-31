@@ -430,3 +430,5 @@ def image_upload(request):
         })
     return render(request, 'home/ocr.html')
 
+def carousel(request):
+    return render(request, 'home/carousel.html')
