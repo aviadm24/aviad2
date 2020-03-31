@@ -352,7 +352,6 @@ def check_bb(request):
         date = post_uft8.split('#')[1]
         time = dt.strptime(date, '%b %d %Y %I:%M:%S')
         sec_past = (dt.now() - time).seconds
-        # print('sec_past: ', sec_past)
         with open('time.txt', 'w') as f:
             f.write(date)
         cache.set('time', time)

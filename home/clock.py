@@ -50,6 +50,7 @@ sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', seconds=10)
 def timed_job():
+    print('dir: ', os.getcwd())
     check_time()
     # print('Time is: ', time)
 
