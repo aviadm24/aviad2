@@ -350,6 +350,8 @@ def check_bb(request):
         post_uft8 = request.body.decode("utf-8")
         # print('post_uft8: ', post_uft8)
         date = post_uft8.split('#')[1]
+        print('date: ', date)
+
         # time = dt.strptime(date, '%b %d %Y %I:%M:%S')
         print('view dir: ', os.getcwd())
         print(__file__)
@@ -359,6 +361,8 @@ def check_bb(request):
         file = os.path.join(base, 'time.txt')
         with open(file, 'w') as f:
             f.write(date)
+        with open(file, 'w') as f:
+            print(f.read(date))
         # cache.set('time', time)
         # print(cache.get('time'))
     return render(request, 'home/list.html')
