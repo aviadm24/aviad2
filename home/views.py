@@ -354,7 +354,7 @@ def check_bb(request):
         sec_past = (dt.now() - time).seconds
         with open('time.txt', 'w') as f:
             f.write(date)
-        cache.set('time', time)
+        # cache.set('time', time)
         # print(cache.get('time'))
     return render(request, 'home/list.html')
 

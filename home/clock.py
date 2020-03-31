@@ -31,7 +31,7 @@ def sendgrid_mail():
 def check_time():
     print("function check")
     base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    print(base)
+    print(os.listdir(base))
     file = os.path.join(base, 'time.txt')
     with open(file, 'r') as f:
         date = f.read()
@@ -51,6 +51,8 @@ sched = BlockingScheduler()
 @sched.scheduled_job('interval', seconds=10)
 def timed_job():
     print('dir: ', os.getcwd())
+    print(__file__)
+    print(os.listdir(os.getcwd()))
     check_time()
     # print('Time is: ', time)
 
