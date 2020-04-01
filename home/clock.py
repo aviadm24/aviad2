@@ -30,30 +30,25 @@ def sendgrid_mail():
 
 
 def check_time():
-    print("function check")
-    # base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    # print(os.listdir(base))
-    # file = os.path.join(base, 'time.txt')
-    # with open(file, 'r') as f:
-    #     date = f.read()
-    # time = datetime.strptime(date, '%b %d %Y %I:%M:%S')
     r = requests.get("https://aviad2.herokuapp.com/get_time")
-    print(r.status_code)
-    print(r.content)
+    # print(r.status_code)
+    # print(r.content)
     t = json.loads(r.content)
     print(t)
     sever_time = datetime.strptime(t['time'], '%b %d %Y %I:%M:%S')
     global sent
     print("ping: ", sever_time)
     print("now: ", datetime.now())
-    delta = datetime.now() - sever_time
+    delta = datetime.now() - sever_time - timedelta(hours=4, minutes=0)
     print('delta is: ', delta.seconds)
     if delta.seconds > 60:
         print('sending mail +++++++++++++++++++++++=')
-        if sent == False:
+        if sent == False and delta.seconds < 100:
             print('2sending mail +++++++++++++++++++++++=')
             # sendgrid_mail()
             sent = True
+            if delta.seconds > 100:
+                sent = False
 
 sched = BlockingScheduler()
 
