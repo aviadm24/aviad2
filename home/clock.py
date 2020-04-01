@@ -41,9 +41,9 @@ def check_time():
     # print("now: ", datetime.now())
     delta = datetime.now() - sever_time - timedelta(hours=4, minutes=0)
     print('delta is: ', delta.seconds)
-    if delta.seconds > 70:
+    if delta.seconds > 140:
         print('sent: ', sent)
-        if sent == False and delta.seconds < 110:
+        if sent == False and delta.seconds < 200:
             print('2sending mail +++++++++++++++++++++++=')
             sendgrid_mail()
             sent = True
