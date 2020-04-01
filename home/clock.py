@@ -34,18 +34,18 @@ def check_time():
     # print(r.status_code)
     # print(r.content)
     t = json.loads(r.content)
-    print(t)
+    # print(t)
     sever_time = datetime.strptime(t['time'], '%b %d %Y %I:%M:%S')
     global sent
-    print("ping: ", sever_time)
-    print("now: ", datetime.now())
+    # print("ping: ", sever_time)
+    # print("now: ", datetime.now())
     delta = datetime.now() - sever_time - timedelta(hours=4, minutes=0)
     print('delta is: ', delta.seconds)
-    if delta.seconds > 60:
-        print('sending mail +++++++++++++++++++++++=')
-        if sent == False and delta.seconds < 100:
+    if delta.seconds > 70:
+        print('sent: ', sent)
+        if sent == False and delta.seconds < 110:
             print('2sending mail +++++++++++++++++++++++=')
-            # sendgrid_mail()
+            sendgrid_mail()
             sent = True
             if delta.seconds > 100:
                 sent = False
@@ -55,9 +55,9 @@ sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', seconds=10)
 def timed_job():
-    print('dir: ', os.getcwd())
-    print(__file__)
-    print(os.listdir(os.getcwd()))
+    # print('dir: ', os.getcwd())
+    # print(__file__)
+    # print(os.listdir(os.getcwd()))
     check_time()
     # print('Time is: ', time)
 

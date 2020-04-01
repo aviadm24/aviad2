@@ -354,7 +354,7 @@ def check_bb(request):
         # db = Time()
         try:
             t = Time.objects.get()
-            print(t.id)
+            # print(t.id)
             Time.objects.filter(pk=t.id).update(time=date)
         except Exception as e:
             print(e)
@@ -378,7 +378,7 @@ def check_bb(request):
 
 def get_time(request):
     t = Time.objects.get()
-    print('time: ', t.time)
+    # print('time: ', t.time)
     return JsonResponse({'time': t.time})
 
 def pdf_booklet_demo(request):
