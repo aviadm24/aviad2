@@ -1,6 +1,11 @@
 from django.db import models
 
 
+# https://devcenter.heroku.com/articles/heroku-postgres-backups#creating-a-backup
+# heroku pg:backups:capture --app caneti
+# heroku pg:backups:restore caneti::{id - like b141} DATABASE_URL --app caneti-staging
+
+
 class User_tokens(models.Model):
     name = models.CharField(max_length=100)
     refresh_token = models.CharField(max_length=100)
