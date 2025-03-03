@@ -43,7 +43,7 @@ python-http-client==3.2.6
 python-social-auth==0.2.14
 python3-openid==3.0.10
 pytz==2017.2
-PyYAML==3.12
+PyYAML==5.4
 requests==2.9.1
 requests-oauthlib==1.3.0
 rsa==4.0
